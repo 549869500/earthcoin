@@ -57,8 +57,10 @@ unsigned int nCoinCacheSize = 5000;
 int64 nMinSubsidy = 1 * COIN;
 
 /** Fees smaller than this (in satoshi) are considered zero fee (for transaction creation) */
+/**小于此费用（在satoshi中）被视为零费用（用于创建交易）*/
 int64 CTransaction::nMinTxFee = 1000000;
 /** Fees smaller than this (in satoshi) are considered zero fee (for relaying) */
+/**小于此费用（在satoshi中）被视为零费用（用于中继）*/
 int64 CTransaction::nMinRelayTxFee = 1000000;
 
 CMedianFilter<int> cPeerBlockCounts(8, 0); // Amount of blocks that other nodes claim to have
