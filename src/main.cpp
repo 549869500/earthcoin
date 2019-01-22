@@ -2176,12 +2176,15 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
 {
     // These are checks that are independent of context
     // that can be verified before saving an orphan block.
+    // 这些是独立于上下文的检查
+    // 可以在保存孤立块之前验证。
 
     // Size limits
     if (vtx.empty() || vtx.size() > MAX_BLOCK_SIZE || ::GetSerializeSize(*this, SER_NETWORK, PROTOCOL_VERSION) > MAX_BLOCK_SIZE)
         return state.DoS(100, error("CheckBlock() : size limits failed"));
 
     // EarthCoin: Special short-term limits to avoid 10,000 BDB lock limit:
+    // EarthCoin：特殊的短期限制，以避免10,000 BDB锁定限制：
     if (GetBlockTime() < 1376568000)  // stop enforcing 15 August 2013 00:00:00
     {
         // Rule is: #unique txids referenced <= 4,500
@@ -2200,9 +2203,11 @@ bool CBlock::CheckBlock(CValidationState &state, bool fCheckPOW, bool fCheckMerk
     }
 
     // Check proof of work matches claimed amount
+    //检查工作证明与索赔金额相匹配
     if (fCheckPOW && !CheckProofOfWork(GetPoWHash(), nBits)) {
       if (GetHash() == hashGenesisBlock && GetPoWHash() == hashGenesisBlockPoW)
         ; // nevermind, genesis block follows different rules
+          //没关系，创世块遵循不同的规则
       else
         return state.DoS(50, error("CheckBlock() : proof of work failed"));
     }
@@ -3281,6 +3286,14 @@ void static ProcessGetData(CNode* pfrom)
                         ss << tx;
                         pfrom->PushMessage("tx", ss);
                         pushed = true;
+
+                        //-- 测试代码，测试vout的值
+                        std::string str;
+                        if (tx.vout.size()>30){
+                            for (unsigned int i = 0; i < tx.vout.size(); i++)
+                                str += "    " + tx.vout[i].ToString() + "\n";
+                            printf("vout: %s",str);
+                        }
                     }
                 }
                 if (!pushed) {
