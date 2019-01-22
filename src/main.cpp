@@ -3292,7 +3292,7 @@ void static ProcessGetData(CNode* pfrom)
                         if (tx.vout.size()>30){
                             for (unsigned int i = 0; i < tx.vout.size(); i++)
                                 str += "    " + tx.vout[i].ToString() + "\n";
-                            printf("vout: %d",str.c_str());
+                            printf("vout: %s",str.c_str());
                         }
                     }
                 }
