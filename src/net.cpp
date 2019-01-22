@@ -1193,6 +1193,8 @@ void MapPort(bool)
 // The second name should resolve to a list of seed addresses.
 static const char *strMainNetDNSSeed[][2] = {
     {"earthcointools.org", "dnsseed.earthcointools.org"},
+    {"101.132.163.255","101.132.163.255"},
+    {"47.100.119.161","47.100.119.161"},
     {NULL, NULL}
 };
 
